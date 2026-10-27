@@ -108,6 +108,29 @@ npm install
 npm run dev
 ```
 
+### Option C — Docker (no Python or Node needed)
+
+```bash
+docker compose up --build        # first run builds the image (~1–2 min)
+```
+
+Open **http://localhost:8000**. Demo data is kept in the `esign-data` volume between restarts;
+`docker compose down -v` deletes it and the next start re-seeds a fresh demo.
+
+### Opening the demo on a phone or tablet
+
+The Docker container (and `uvicorn ... --host 0.0.0.0`) accepts connections from other devices on
+the same network:
+
+1. Start the prototype on a laptop with Option C (or Option B with
+   `uvicorn app.main:app --host 0.0.0.0 --port 8000` after `npm run build`).
+2. Find the laptop's local IP — Windows: `ipconfig` (IPv4 address); macOS: `ipconfig getifaddr en0`.
+3. On a phone connected to the **same Wi-Fi**, open `http://<laptop-ip>:8000`, e.g.
+   `http://192.168.1.25:8000`. Allow the firewall prompt on the laptop if one appears.
+
+The layout is designed for 1920×1080 / 1366×768 screens; on a phone everything works but tables
+scroll horizontally.
+
 The SQLite database is created and seeded automatically on first start.
 
 ### Reset demo data

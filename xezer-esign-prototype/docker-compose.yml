@@ -1,0 +1,12 @@
+services:
+  esign:
+    build: .
+    image: xezer-esign-prototype
+    ports:
+      - "8000:8000"
+    volumes:
+      - esign-data:/app/backend/data
+    restart: unless-stopped
+
+volumes:
+  esign-data:
